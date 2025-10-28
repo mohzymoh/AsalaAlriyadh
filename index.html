@@ -690,7 +690,7 @@
                     <li><a href="#equipment">المعدات</a></li>
                     <li><a href="#materials">المواد والمنتجات</a></li>
                     <li><a href="#projects">المشاريع</a></li>
-                    <li><a href="#contact">اتصل بنا</a></li>
+                    <li><a href="contact.html">اتصل بنا</a></li>
                 </ul>
                 <div class="language-switcher">
                     <span>AR</span> | <span>EN</span>
@@ -839,7 +839,7 @@
                     <h3>المنتجات الخرسانية</h3>
                     <p>نوفر توريد وتنفيذ منتجات خرسانية عالية الجودة بمواصفات معتمدة، تشمل:</p>
                     <ul class="equipment-service-list">
-                        <li>بلك نازواعد</li>
+                        <li>بلك </li>
                         <li>بردورات وموارز خرسانية</li>
                         <li>كراسي ومقاعد خرسانية</li>
                         <li>حلول خاصة حسب متطلبات المشروع</li>
@@ -991,7 +991,6 @@
             });
         });
 
-        // تأثير الظهور عند التمرير
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -1005,7 +1004,6 @@
             });
         }, observerOptions);
 
-        // مراقبة العناصر لإضافة تأثيرات الظهور
         document.addEventListener('DOMContentLoaded', () => {
             const elementsToAnimate = document.querySelectorAll('.service-card, .stat-item, .equipment-item, .vm-card, .why-us-item, .equipment-service-card, .material-card');
             elementsToAnimate.forEach(el => {
@@ -1013,7 +1011,6 @@
             });
         });
 
-        // إضافة كلاس للهيدر عند التمرير
         window.addEventListener('scroll', () => {
             const header = document.querySelector('.header');
             if (window.scrollY > 100) {
@@ -1025,7 +1022,6 @@
             }
         });
 
-        // إضافة تأثيرات للزرور
         document.querySelectorAll('.btn-primary, .btn-secondary').forEach(button => {
             button.addEventListener('mouseenter', function() {
                 this.style.transform = 'translateY(-2px)';

@@ -458,7 +458,7 @@
                     <li><a href="index.html#equipment">المعدات</a></li>
                     <li><a href="index.html#materials">المواد والمنتجات</a></li>
                     <li><a href="index.html#projects">المشاريع</a></li>
-                    <li><a href="index.html#contact">اتصل بنا</a></li>
+                    <li><a href="contact.html">اتصل بنا</a></li>
                 </ul>
                 <div class="language-switcher">
                     <span>AR</span> | <span>EN</span>
@@ -597,7 +597,6 @@
     </footer>
 
     <script>
-        // تأثير التمرير السلس للروابط
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -611,7 +610,6 @@
             });
         });
 
-        // تأثير الظهور عند التمرير
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -625,7 +623,6 @@
             });
         }, observerOptions);
 
-        // مراقبة العناصر لإضافة تأثيرات الظهور
         document.addEventListener('DOMContentLoaded', () => {
             const elementsToAnimate = document.querySelectorAll('.why-us-item, .vm-card, .stat-item');
             elementsToAnimate.forEach(el => {
@@ -633,7 +630,6 @@
             });
         });
 
-        // إضافة كلاس للهيدر عند التمرير
         window.addEventListener('scroll', () => {
             const header = document.querySelector('.header');
             if (window.scrollY > 100) {
