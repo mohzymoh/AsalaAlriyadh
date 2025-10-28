@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>من نحن - شركة أصالة الرياض للمقاولات العامة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            line-height: 1.6;
+            color: #FFFFFF;
+            background: #1C1C1C;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            background: rgba(28, 28, 28, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(244, 177, 0, 0.1);
+            transition: all 0.3s ease;
+            border-bottom: 1px solid #2E2E2E;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo h2 {
+            color: #F4B100;
+            font-size: 1.8rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .logo span {
+            color: #BFBFBF;
+            font-size: 0.9rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #FFFFFF;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #F4B100;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: #F4B100;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .language-switcher {
+            color: #F4B100;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .page-hero {
+            background: linear-gradient(135deg, rgba(28, 28, 28, 0.8), rgba(46, 46, 46, 0.6)),
+                        url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') center/cover;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+        }
+
+        .page-hero-overlay {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+            max-width: 90%;
+            border: 1px solid #2E2E2E;
+        }
+
+        .page-hero-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .page-hero-title .highlight {
+            color: #F4B100;
+            display: block;
+        }
+
+        .page-hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            color: #BFBFBF;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #F4B100;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 100px;
+            height: 3px;
+            background: #F4B100;
+        }
+
+        .about-intro {
+            padding: 5rem 0;
+            background: #1C1C1C;
+        }
+
+        .intro-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .intro-content p {
+            color: #BFBFBF;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .why-us {
+            padding: 5rem 0;
+            background: #2E2E2E;
+        }
+
+        .why-us-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .why-us-item {
+            background: #1C1C1C;
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid #2E2E2E;
+            transition: transform 0.3s ease;
+        }
+
+        .why-us-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(244, 177, 0, 0.1);
+        }
+
+        .why-us-item h3 {
+            color: #F4B100;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .why-us-item p {
+            color: #BFBFBF;
+            line-height: 1.6;
+        }
+
+        .vision-mission {
+            padding: 5rem 0;
+            background: #1C1C1C;
+        }
+
+        .vm-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .vm-card {
+            background: #2E2E2E;
+            padding: 2.5rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid #2E2E2E;
+        }
+
+        .vm-card h3 {
+            color: #F4B100;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .vm-card p {
+            color: #BFBFBF;
+            line-height: 1.8;
+        }
+
+        .ceo-message {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #1C1C1C, #2E2E2E);
+            color: white;
+            border-top: 1px solid #2E2E2E;
+            border-bottom: 1px solid #2E2E2E;
+        }
+
+        .message-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .message-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #F4B100;
+        }
+
+        .message-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-style: italic;
+            color: #BFBFBF;
+        }
+
+        .ceo-signature {
+            border-top: 1px solid #2E2E2E;
+            padding-top: 1rem;
+        }
+
+        .ceo-signature strong {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #F4B100;
+        }
+
+        .ceo-signature span {
+            color: #BFBFBF;
+        }
+
+        .company-stats {
+            padding: 5rem 0;
+            background: #2E2E2E;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            background: #1C1C1C;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid #2E2E2E;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(244, 177, 0, 0.1);
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #F4B100;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-text {
+            font-size: 1.1rem;
+            color: #BFBFBF;
+        }
+
+        .footer {
+            background: #1C1C1C;
+            color: white;
+            padding: 3rem 0 1rem;
+            border-top: 1px solid #2E2E2E;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo h3 {
+            color: #F4B100;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-logo span {
+            color: #BFBFBF;
+        }
+
+        .footer-info p {
+            color: #BFBFBF;
+            margin-top: 1rem;
+        }
+
+        .footer-contact h4 {
+            color: #F4B100;
+            margin-bottom: 1rem;
+        }
+
+        .footer-contact p {
+            color: #BFBFBF;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #2E2E2E;
+            padding-top: 1rem;
+            text-align: center;
+            color: #BFBFBF;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .page-hero-title {
+                font-size: 2.5rem;
+            }
+
+            .page-hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .why-us-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .vm-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-hero-title {
+                font-size: 2rem;
+            }
+
+            .page-hero-overlay {
+                padding: 2rem 1rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .vm-card, .why-us-item, .stat-item {
+                padding: 1.5rem;
+            }
+        }
+
+        /* تأثيرات الظهور */
+        .animate-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- الهيدر -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="logo">
+                    <h2>أصالة الرياض</h2>
+                    <span>للمقاولات العامة</span>
+                </div>
+                <ul class="nav-links">
+                      <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="About .html">من نحن</a></li>
+                    <li><a href="Service .html">الخدمات</a></li>
+                    <li><a href="index.html#equipment">المعدات</a></li>
+                    <li><a href="index.html#materials">المواد والمنتجات</a></li>
+                    <li><a href="index.html#projects">المشاريع</a></li>
+                    <li><a href="index.html#contact">اتصل بنا</a></li>
+                </ul>
+                <div class="language-switcher">
+                    <span>AR</span> | <span>EN</span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- قسم البطل -->
+    <section id="about" class="page-hero">
+        <div class="page-hero-overlay">
+            <div class="page-hero-content">
+                <h1 class="page-hero-title">
+                    <span class="highlight">من نحن</span>
+                </h1>
+                <p class="page-hero-subtitle">شركة أصالة الرياض للمقاولات العامة - ريادة وتميز لأكثر من 20 عاماً</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم المقدمة -->
+    <section class="about-intro">
+        <div class="container">
+            <div class="intro-content">
+                <h2 class="section-title">عن شركتنا</h2>
+                <p>
+                    شركة أصالة الرياض للمقاولات العامة هي شركة رائدة في مجال المقاولات والتشييد في المملكة العربية السعودية، 
+                    تأسست منذ أكثر من 20 عاماً بهدف تقديم خدمات متكاملة في مجال الإنشاءات والحفر وتسوية الأراضي وتأجير المعدات الثقيلة.
+                </p>
+                <p>
+                    نتميز بفريق من المهندسين والمديرين ذوي الكفاءة العالية القادرين على تحقيق أعلى معايير الجودة والاستدامة 
+                    بسرعة وإتقان. نحن نعمل مع القطاعين الحكومي والخاص بدقة واحترافية، ونساهم في تحقيق رؤية المملكة 2030 
+                    ونسهم في بناء وطن مزدهر.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم إحصائيات الشركة -->
+    <section class="company-stats">
+        <div class="container">
+            <h2 class="section-title">أرقامنا تتحدث</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">+20</span>
+                    <span class="stat-text">سنة خبرة</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">+350</span>
+                    <span class="stat-text">مشروع منفذ</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">95%</span>
+                    <span class="stat-text">رضا العملاء</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-text">مهندس وفني</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم "نبني الثقة ونتجز المستقبل" -->
+    <section class="why-us">
+        <div class="container">
+            <h2 class="section-title">نبني الثقة ونتجز المستقبل</h2>
+            <div class="why-us-grid">
+                <div class="why-us-item">
+                    <h3>لماذا أصالة الرياض للمقاولات؟</h3>
+                    <p>لدينا عروض متكاملة في البناء وتأجير المعدات تستند على 20 عامًا من الخبرة، مدعومة بجودة الأساليب والإجراءات. راسخون في مجالنا وننجز كل مشروع.</p>
+                </div>
+                <div class="why-us-item">
+                    <h3>معايير جودة عالمية</h3>
+                    <p>نطبق معايير جودة عالمية في كل مرحلة من مراحل التنفيذ، بخبرة احترافية مدعومة بكادر هندسي وفرق عالية الكفاءة.</p>
+                </div>
+                <div class="why-us-item">
+                    <h3>حلول ذكية ومناسبة</h3>
+                    <p>نقدم حلولاً ذكية ومناسبة للتكلفة تناسب مختلف المشاريع، مع ثقة مبنية على أكثر من 350 مشروعاً منفذاً على أرض الواقع.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الرؤية والرسالة المحدث -->
+    <section class="vision-mission">
+        <div class="container">
+            <h2 class="section-title">رؤيتنا ورسالتنا</h2>
+            <div class="vm-grid">
+                <div class="vm-card">
+                    <h3>الرؤية</h3>
+                    <p>إن تحقيق أفضل الحلول والإنجازات في قطاع المقاولات بالمملكة، بخبرة 20 عاماً متواصلة، مع فريق من المهندسين والمديرين ذوي الكفاءة العالية القادرين على تحقيق أعلى معايير الجودة والاستدامة بسرعة وإتقان. نساهم في تحقيق رؤية المملكة 2030 ونسهم في بناء وطن مزدهر.</p>
+                </div>
+                <div class="vm-card">
+                    <h3>الرسالة</h3>
+                    <p>تلتزم شركة أصالة الرياض للمقاولات بتقديم قيمة مضافة في الجودة والالتزام وتقديم خدمات متكاملة. رسالتنا هي تحقيق مشاريع متميزة، لتحقيق بيئة عمرانية جديدة، حيث نعمل مع القطاعين الحكومي والخاص بدقة واحترافية. مع التزامنا بالسلامة والابتكار والمساهمة في التنمية المستدامة للمملكة.</p>
+                </div>
+                <div class="vm-card">
+                    <h3>أهدافنا الاستراتيجية</h3>
+                    <p>بناء الثقة مع عملائنا من خلال تنفيذ معايير عالمية والتوسع في الأسواق السعودية والخليجية. مع الاستثمار في أحدث التقنيات والتميز في التنفيذ السريع والالتزام بالمواعيد المحددة. تحقيق مستهدفات رؤية 2030 من خلال تطوير البنية التحتية وتعزيز الاستدامة لنكون شريكاً موثوقاً للجهات الحكومية والقطاع الخاص.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم رسالة الرئيس -->
+    <section class="ceo-message">
+        <div class="container">
+            <div class="message-content">
+                <h2>رسالة الرئيس التنفيذي</h2>
+                <p class="message-text">
+                    "يسعدني أن أرحب بكم في شركة أصالة الرياض للمقاولات العامة، حيث تمثل الجودة والالتزام الأساس الذي لا نتزحزح عنه. مع أكثر من 20 عاماً من الخبرة في السوق السعودي، بنينا سمعة رصينة من خلال تقديم حلول متكاملة في مجال الإنشاءات والحفر وتسوية الأراضي وتأجير المعدات الثقيلة. نحن نؤمن بأن نجاحنا يعتمد على نجاح عملائنا، لذلك نعمل بجد لتحقيق توقعاتهم وتجاوزها في كل مشروع."
+                </p>
+                <div class="ceo-signature">
+                    <strong>الرئيس التنفيذي</strong>
+                    <span>شركة أصالة الرياض</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- الفوتر -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <h3>أصالة الرياض</h3>
+                        <span>للمقاولات العامة</span>
+                    </div>
+                    <p>الريادة في مجال المقاولات العامة منذ أكثر من 20 عاماً</p>
+                </div>
+                <div class="footer-contact">
+                    <h4>اتصل بنا</h4>
+                    <p>asala.ryadh@gmail.com</p>
+                    <p>asala@asala.nyadh@gmail.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 شركة أصالة الرياض للمقاولات العامة. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // تأثير التمرير السلس للروابط
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // تأثير الظهور عند التمرير
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, observerOptions);
+
+        // مراقبة العناصر لإضافة تأثيرات الظهور
+        document.addEventListener('DOMContentLoaded', () => {
+            const elementsToAnimate = document.querySelectorAll('.why-us-item, .vm-card, .stat-item');
+            elementsToAnimate.forEach(el => {
+                observer.observe(el);
+            });
+        });
+
+        // إضافة كلاس للهيدر عند التمرير
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(28, 28, 28, 0.98)';
+                header.style.boxShadow = '0 5px 20px rgba(244, 177, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(28, 28, 28, 0.95)';
+                header.style.boxShadow = '0 2px 20px rgba(244, 177, 0, 0.1)';
+            }
+        });
+    </script>
+</body>
+</html>
