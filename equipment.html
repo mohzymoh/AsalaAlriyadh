@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المعدات - شركة أصالة الرياض للمقاولات العامة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            line-height: 1.6;
+            color: #FFFFFF;
+            background: #1C1C1C;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            background: rgba(28, 28, 28, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(244, 177, 0, 0.1);
+            transition: all 0.3s ease;
+            border-bottom: 1px solid #2E2E2E;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo h2 {
+            color: #F4B100;
+            font-size: 1.8rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .logo span {
+            color: #BFBFBF;
+            font-size: 0.9rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #FFFFFF;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #F4B100;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: #F4B100;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .language-switcher {
+            color: #F4B100;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .page-hero {
+            background: linear-gradient(135deg, rgba(28, 28, 28, 0.8), rgba(46, 46, 46, 0.6)),
+                        url('https://images.unsplash.com/photo-1633380114543-2d49b102f36d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') center/cover;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+        }
+
+        .hero-overlay {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+            max-width: 90%;
+            border: 1px solid #2E2E2E;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .page-title .highlight {
+            color: #F4B100;
+            display: block;
+        }
+
+        .page-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            color: #BFBFBF;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #F4B100;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 100px;
+            height: 3px;
+            background: #F4B100;
+        }
+
+        .equipment-categories {
+            padding: 5rem 0;
+            background: #1C1C1C;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .category-card {
+            background: #2E2E2E;
+            padding: 2.5rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #2E2E2E;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(244, 177, 0, 0.2);
+        }
+
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .category-card h3 {
+            color: #F4B100;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .category-card p {
+            color: #BFBFBF;
+            line-height: 1.6;
+        }
+
+        .equipment-details {
+            padding: 5rem 0;
+            background: #2E2E2E;
+        }
+
+        .equipment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .equipment-card {
+            background: #1C1C1C;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+            border: 1px solid #2E2E2E;
+        }
+
+        .equipment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(244, 177, 0, 0.2);
+        }
+
+        .equipment-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .equipment-card h3 {
+            color: #F4B100;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .equipment-specs {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .equipment-specs li {
+            color: #BFBFBF;
+            margin-bottom: 0.5rem;
+            padding-right: 1rem;
+            position: relative;
+            text-align: right;
+        }
+
+        .equipment-specs li::before {
+            content: "•";
+            color: #F4B100;
+            position: absolute;
+            right: 0;
+        }
+
+        .rental-info {
+            padding: 5rem 0;
+            background: #1C1C1C;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .info-card {
+            background: #2E2E2E;
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid #2E2E2E;
+        }
+
+        .info-card h3 {
+            color: #F4B100;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            border-bottom: 1px solid #2E2E2E;
+            padding-bottom: 0.5rem;
+        }
+
+        .info-list {
+            list-style: none;
+        }
+
+        .info-list li {
+            color: #BFBFBF;
+            margin-bottom: 0.8rem;
+            padding-right: 1rem;
+            position: relative;
+        }
+
+        .info-list li::before {
+            content: "✓";
+            color: #F4B100;
+            position: absolute;
+            right: 0;
+            font-weight: bold;
+        }
+
+        .cta-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #1C1C1C, #2E2E2E);
+            text-align: center;
+            border-top: 1px solid #2E2E2E;
+            border-bottom: 1px solid #2E2E2E;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #F4B100;
+        }
+
+        .cta-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #BFBFBF;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Cairo', sans-serif;
+            margin: 0 0.5rem;
+        }
+
+        .btn-primary {
+            background: #F4B100;
+            color: #1C1C1C;
+        }
+
+        .btn-primary:hover {
+            background: #E28E00;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(244, 177, 0, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #FFFFFF;
+            border: 2px solid #F4B100;
+        }
+
+        .btn-secondary:hover {
+            background: #F4B100;
+            color: #1C1C1C;
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            background: #1C1C1C;
+            color: white;
+            padding: 3rem 0 1rem;
+            border-top: 1px solid #2E2E2E;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo h3 {
+            color: #F4B100;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-logo span {
+            color: #BFBFBF;
+        }
+
+        .footer-info p {
+            color: #BFBFBF;
+            margin-top: 1rem;
+        }
+
+        .footer-contact h4 {
+            color: #F4B100;
+            margin-bottom: 1rem;
+        }
+
+        .footer-contact p {
+            color: #BFBFBF;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #2E2E2E;
+            padding-top: 1rem;
+            text-align: center;
+            color: #BFBFBF;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .page-title {
+                font-size: 2.5rem;
+            }
+
+            .page-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .equipment-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .btn-primary, .btn-secondary {
+                display: block;
+                width: 100%;
+                margin: 0.5rem 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .hero-overlay {
+                padding: 2rem 1rem;
+            }
+
+            .category-card, .equipment-card, .info-card {
+                padding: 1.5rem;
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="logo">
+                    <h2>أصالة الرياض</h2>
+                    <span>للمقاولات العامة</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="About.html">من نحن</a></li>
+                    <li><a href="Service.html">الخدمات</a></li>
+                    <li><a href="equipment.html">المعدات</a></li>
+                    <li><a href="#materials">المواد والمنتجات</a></li>
+                    <li><a href="projects.html">المشاريع</a></li>
+                    <li><a href="contact.html">اتصل بنا</a></li>
+                </ul>
+                <div class="language-switcher">
+                    <span>AR</span> | <span>EN</span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="page-hero">
+        <div class="hero-overlay">
+            <h1 class="page-title">
+                <span class="highlight">أسطولنا المتكامل</span>
+                <span>من المعدات الثقيلة</span>
+            </h1>
+            <p class="page-subtitle">أحدث المعدات والآليات لتلبية جميع احتياجات مشاريعكم</p>
+        </div>
+    </section>
+
+    <section class="equipment-categories">
+        <div class="container">
+            <h2 class="section-title">فئات المعدات</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-icon">🚜</div>
+                    <h3>معدات الحفر</h3>
+                    <p>بوكلينات، حفارات، وجميع معدات الحفر المتخصصة بأحدث الموديلات</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🏗️</div>
+                    <h3>معدات الرفع</h3>
+                    <p>رافعات، كرينات، ومعدات الرفع المختلفة بقدرات متنوعة</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🚛</div>
+                    <h3>معدات النقل</h3>
+                    <p>شاحنات نقل، قلابات، ومعدات النقل الثقيل بمختلف الأحجام</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🛠️</div>
+                    <h3>معدات خاصة</h3>
+                    <p>معدات متخصصة لأعمال التشييد والبناء والهدم</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="equipment-details">
+        <div class="container">
+            <h2 class="section-title">تفاصيل المعدات</h2>
+            <div class="equipment-grid">
+                <div class="equipment-card">
+                    <div class="equipment-icon">🚜</div>
+                    <h3>بوكلينات</h3>
+                    <ul class="equipment-specs">
+                        <li>سعة الدلو: 0.8 - 2.5 م³</li>
+                        <li>الوزن: 15 - 45 طن</li>
+                        <li>القوة: 90 - 250 حصان</li>
+                        <li>عمق الحفر: 5 - 8 متر</li>
+                    </ul>
+                </div>
+                <div class="equipment-card">
+                    <div class="equipment-icon">🏗️</div>
+                    <h3>شيولات</h3>
+                    <ul class="equipment-specs">
+                        <li>سعة الدلو: 1.5 - 4.5 م³</li>
+                        <li>الوزن: 18 - 50 طن</li>
+                        <li>القوة: 120 - 300 حصان</li>
+                        <li>ارتفاع التحميل: 3 - 5 متر</li>
+                    </ul>
+                </div>
+                <div class="equipment-card">
+                    <div class="equipment-icon">🚛</div>
+                    <h3>قلاب</h3>
+                    <ul class="equipment-specs">
+                        <li>سعة التحميل: 10 - 30 طن</li>
+                        <li>سعة الصندوق: 8 - 20 م³</li>
+                        <li>القوة: 200 - 400 حصان</li>
+                        <li>نظام التعليق: هوائي</li>
+                    </ul>
+                </div>
+                <div class="equipment-card">
+                    <div class="equipment-icon">🏗️</div>
+                    <h3>رافعات</h3>
+                    <ul class="equipment-specs">
+                        <li>القدرة: 25 - 250 طن</li>
+                        <li>ارتفاع الرفع: 30 - 80 متر</li>
+                        <li>نظام التحكم: هيدروليكي</li>
+                        <li>نظام الأمان: متكامل</li>
+                    </ul>
+                </div>
+                <div class="equipment-card">
+                    <div class="equipment-icon">🚧</div>
+                    <h3>مداحل</h3>
+                    <ul class="equipment-specs">
+                        <li>الوزن: 8 - 25 طن</li>
+                        <li>عرض الدحل: 1.5 - 2.5 متر</li>
+                        <li>القوة: 80 - 150 حصان</li>
+                        <li>نظام الاهتزاز: متغير</li>
+                    </ul>
+                </div>
+                <div class="equipment-card">
+                    <div class="equipment-icon">🛠️</div>
+                    <h3>معدات خاصة</h3>
+                    <ul class="equipment-specs">
+                        <li>معدات قطع الصخور</li>
+                        <li>معدات ثقب الخوازيق</li>
+                        <li>معدات الحقن</li>
+                        <li>معدات متخصصة</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="rental-info">
+        <div class="container">
+            <h2 class="section-title">معلومات التأجير</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>شروط التأجير</h3>
+                    <ul class="info-list">
+                        <li>توفير مستندات الرخصة والسجل التجاري</li>
+                        <li>دفع عربون تأميني</li>
+                        <li>التوقيع على عقد تأجير شامل</li>
+                        <li>التأمين على المعدة</li>
+                        <li>الالتزام بشروط السلامة</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h3>مميزات التأجير</h3>
+                    <ul class="info-list">
+                        <li>أسعار تنافسية</li>
+                        <li>صيانة دورية مجانية</li>
+                        <li>خدمة 24/7</li>
+                        <li>مشغلو معدات مدربون</li>
+                        <li>توصيل المعدات للموقع</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h3>خدمات إضافية</h3>
+                    <ul class="info-list">
+                        <li>توفير مشغلي معدات مدربين</li>
+                        <li>خدمات الصيانة الطارئة</li>
+                        <li>استشارات فنية متخصصة</li>
+                        <li>توفير قطع الغيار</li>
+                        <li>تدريب الكوادر</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>جاهزون لخدمتكم</h2>
+                <p>اتصل بنا الآن للحصول على أفضل العروض والاستشارات المجانية</p>
+                <button class="btn-primary">اطلب عرض سعر</button>
+                <button class="btn-secondary">اتصل بنا الآن</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <h3>أصالة الرياض</h3>
+                        <span>للمقاولات العامة</span>
+                    </div>
+                    <p>الريادة في مجال المقاولات العامة منذ أكثر من 20 عاماً</p>
+                </div>
+                <div class="footer-contact">
+                    <h4>اتصل بنا</h4>
+                    <p>asala.ryadh@gmail.com</p>
+                    <p>asala@asala.nyadh@gmail.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 شركة أصالة الرياض للمقاولات العامة. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, observerOptions);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const elementsToAnimate = document.querySelectorAll('.category-card, .equipment-card, .info-card');
+            elementsToAnimate.forEach(el => {
+                observer.observe(el);
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(28, 28, 28, 0.98)';
+                header.style.boxShadow = '0 5px 20px rgba(244, 177, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(28, 28, 28, 0.95)';
+                header.style.boxShadow = '0 2px 20px rgba(244, 177, 0, 0.1)';
+            }
+        });
+
+        document.querySelectorAll('.btn-primary, .btn-secondary').forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px)';
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.addEventListener('click', function() {
+                document.querySelector('.equipment-details').scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

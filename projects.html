@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مشاريعنا - شركة أصالة الرياض للمقاولات العامة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            line-height: 1.6;
+            color: #FFFFFF;
+            background: #1C1C1C;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            background: rgba(28, 28, 28, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(244, 177, 0, 0.1);
+            transition: all 0.3s ease;
+            border-bottom: 1px solid #2E2E2E;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo h2 {
+            color: #F4B100;
+            font-size: 1.8rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .logo span {
+            color: #BFBFBF;
+            font-size: 0.9rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #FFFFFF;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #F4B100;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: #F4B100;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .language-switcher {
+            color: #F4B100;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .page-hero {
+            background: linear-gradient(135deg, rgba(28, 28, 28, 0.8), rgba(46, 46, 46, 0.6)),
+                        url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') center/cover;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+        }
+
+        .page-hero-overlay {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+            max-width: 90%;
+            border: 1px solid #2E2E2E;
+        }
+
+        .page-hero-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .page-hero-title .highlight {
+            color: #F4B100;
+            display: block;
+        }
+
+        .page-hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            color: #BFBFBF;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #F4B100;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 100px;
+            height: 3px;
+            background: #F4B100;
+        }
+
+        .projects-section {
+            padding: 5rem 0;
+            background: #1C1C1C;
+        }
+
+        .projects-filter {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 1.5rem;
+            background: #2E2E2E;
+            color: #BFBFBF;
+            border: 1px solid #2E2E2E;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 600;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: #F4B100;
+            color: #1C1C1C;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: #2E2E2E;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #2E2E2E;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(244, 177, 0, 0.2);
+        }
+
+        .project-image {
+            height: 250px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-category {
+            display: inline-block;
+            background: #F4B100;
+            color: #1C1C1C;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .project-title {
+            color: #FFFFFF;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-description {
+            color: #BFBFBF;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-details {
+            display: flex;
+            justify-content: space-between;
+            color: #BFBFBF;
+            font-size: 0.9rem;
+            border-top: 1px solid #1C1C1C;
+            padding-top: 1rem;
+        }
+
+        .project-detail {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .stats-section {
+            padding: 5rem 0;
+            background: #2E2E2E;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-card {
+            background: #1C1C1C;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid #2E2E2E;
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #F4B100;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-text {
+            font-size: 1rem;
+            color: #BFBFBF;
+        }
+
+        .clients-section {
+            padding: 5rem 0;
+            background: #1C1C1C;
+        }
+
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .client-logo {
+            background: #2E2E2E;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+
+        .client-logo:hover {
+            transform: scale(1.05);
+        }
+
+        .client-logo img {
+            max-width: 100%;
+            max-height: 60px;
+            filter: grayscale(100%);
+            transition: filter 0.3s ease;
+        }
+
+        .client-logo:hover img {
+            filter: grayscale(0%);
+        }
+
+        .testimonials-section {
+            padding: 5rem 0;
+            background: #2E2E2E;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: #1C1C1C;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid #2E2E2E;
+        }
+
+        .testimonial-text {
+            color: #BFBFBF;
+            font-style: italic;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .testimonial-text::before {
+            content: "";
+            font-size: 3rem;
+            color: #F4B100;
+            position: absolute;
+            top: -1rem;
+            right: -0.5rem;
+            opacity: 0.3;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #2E2E2E;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #F4B100;
+            font-weight: bold;
+        }
+
+        .author-info h4 {
+            color: #FFFFFF;
+            margin-bottom: 0.2rem;
+        }
+
+        .author-info p {
+            color: #BFBFBF;
+            font-size: 0.9rem;
+        }
+
+        .cta-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #1C1C1C, #2E2E2E);
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            color: #F4B100;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-text {
+            color: #BFBFBF;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .btn-primary {
+            padding: 1rem 2rem;
+            background: #F4B100;
+            color: #1C1C1C;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .btn-primary:hover {
+            background: #E28E00;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(244, 177, 0, 0.3);
+        }
+
+        .footer {
+            background: #1C1C1C;
+            color: white;
+            padding: 3rem 0 1rem;
+            border-top: 1px solid #2E2E2E;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo h3 {
+            color: #F4B100;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-logo span {
+            color: #BFBFBF;
+        }
+
+        .footer-info p {
+            color: #BFBFBF;
+            margin-top: 1rem;
+        }
+
+        .footer-contact h4 {
+            color: #F4B100;
+            margin-bottom: 1rem;
+        }
+
+        .footer-contact p {
+            color: #BFBFBF;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #2E2E2E;
+            padding-top: 1rem;
+            text-align: center;
+            color: #BFBFBF;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .page-hero-title {
+                font-size: 2.2rem;
+            }
+
+            .page-hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .clients-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-hero-title {
+                font-size: 1.8rem;
+            }
+
+            .page-hero-overlay {
+                padding: 2rem 1rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .clients-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .project-card, .stat-card, .testimonial-card {
+                padding: 1.5rem;
+            }
+        }
+
+        /* تأثيرات الظهور */
+        .animate-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="logo">
+                    <h2>أصالة الرياض</h2>
+                    <span>للمقاولات العامة</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">الرئيسية</a></li>
+                    <li><a href="About.html">من نحن</a></li>
+                    <li><a href="Service.html">الخدمات</a></li>
+                    <li><a href="equipment.html">المعدات</a></li>
+                    <li><a href="#materials">المواد والمنتجات</a></li>
+                    <li><a href="projects.html" style="color: #F4B100;">المشاريع</a></li>
+                    <li><a href="contact.html">اتصل بنا</a></li>
+                </ul>
+                <div class="language-switcher">
+                    <span>AR</span> | <span>EN</span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="page-hero">
+        <div class="page-hero-overlay">
+            <h1 class="page-hero-title">
+                <span class="highlight">مشاريعنا</span>
+                <span>إنجازات تتحدث عن نفسها</span>
+            </h1>
+            <p class="page-hero-subtitle">أكثر من 350 مشروعاً منفذاً في مختلف أنحاء المملكة</p>
+        </div>
+    </section>
+
+    <section class="projects-section">
+        <div class="container">
+            <h2 class="section-title">معرض المشاريع</h2>
+            <div class="projects-filter">
+                <button class="filter-btn active" data-filter="all">جميع المشاريع</button>
+                <button class="filter-btn" data-filter="construction">المقاولات العامة</button>
+                <button class="filter-btn" data-filter="infrastructure">البنية التحتية</button>
+                <button class="filter-btn" data-filter="residential">سكني</button>
+                <button class="filter-btn" data-filter="commercial">تجاري</button>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card" data-category="construction">
+                    <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="مشروع بناء فلل سكنية" class="project-image">
+                    <div class="project-content">
+                        <span class="project-category">مقاولات عامة</span>
+                        <h3 class="project-title">مجمع فلل سكنية - الرياض</h3>
+                        <p class="project-description">تنفيذ مجمع فلل سكنية فاخرة بمساحة إجمالية 15,000 متر مربع، يتكون من 20 فيلا بتصاميم معاصرة وحديثة.</p>
+                        <div class="project-details">
+                            <div class="project-detail">⏱️ 18 شهر</div>
+                            <div class="project-detail">📏 15,000 م²</div>
+                            <div class="project-detail">🏢 20 فيلا</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card" data-category="infrastructure">
+                    <img src="https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="مشروع بنية تحتية" class="project-image">
+                    <div class="project-content">
+                        <span class="project-category">بنية تحتية</span>
+                        <h3 class="project-title">شبكة طرق رئيسية - القصيم</h3>
+                        <p class="project-description">تنفيذ شبكة طرق رئيسية بطول 25 كم مع أعمال الصرف الصحي والإنارة، لربط مناطق سكنية جديدة.</p>
+                        <div class="project-details">
+                            <div class="project-detail">⏱️ 24 شهر</div>
+                            <div class="project-detail">📏 25 كم</div>
+                            <div class="project-detail">🚧 4 مسارات</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card" data-category="commercial">
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="مشروع مركز تجاري" class="project-image">
+                    <div class="project-content">
+                        <span class="project-category">تجاري</span>
+                        <h3 class="project-title">مركز تجاري - جدة</h3>
+                        <p class="project-description">بناء مركز تجاري متكامل بمساحة 40,000 متر مربع، يتضمن 120 محل تجاري ومواقف سيارات متعددة الطوابق.</p>
+                        <div class="project-details">
+                            <div class="project-detail">⏱️ 30 شهر</div>
+                            <div class="project-detail">📏 40,000 م²</div>
+                            <div class="project-detail">🏬 120 محل</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card" data-category="residential">
+                    <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="مشروع سكني" class="project-image">
+                    <div class="project-content">
+                        <span class="project-category">سكني</span>
+                        <h3 class="project-title">مجمع سكني - الدمام</h3>
+                        <p class="project-description">تنفيذ مجمع سكني مكون من 6 أبراج سكنية، كل برج يحتوي على 36 شقة سكنية بمواصفات فاخرة.</p>
+                        <div class="project-details">
+                            <div class="project-detail">⏱️ 28 شهر</div>
+                            <div class="project-detail">📏 22,000 م²</div>
+                            <div class="project-detail">🏢 216 شقة</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card" data-category="construction">
+                    <img src="https://images.unsplash.com/photo-1541976590-713941681591?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="مشروع بناء مستشفى" class="project-image">
+                    <div class="project-content">
+                        <span class="project-category">مقاولات عامة</span>
+                        <h3 class="project-title">مستشفى تخصصي - المدينة المنورة</h3>
+                        <p class="project-description">بناء مستشفى تخصصي متكامل بمساحة 30,000 متر مربع، يتضمن 200 سرير وأقسام طبية متخصصة.</p>
+                        <div class="project-details">
+                            <div class="project-detail">⏱️ 36 شهر</div>
+                            <div class="project-detail">📏 30,000 م²</div>
+                            <div class="project-detail">🏥 200 سرير</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card" data-category="infrastructure">
+                    <img src="https://images.unsplash.com/photo-1576675466969-38eeae4b41f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="مشروع جسور وأنفاق" class="project-image">
+                    <div class="project-content">
+                        <span class="project-category">بنية تحتية</span>
+                        <h3 class="project-title">جسور وأنفاق - الرياض</h3>
+                        <p class="project-description">تنفيذ شبكة جسور وأنفاق بطول 8 كم لتسهيل حركة المرور في منطقة مزدحمة، مع أعمال إنارة وإشارات مرور.</p>
+                        <div class="project-details">
+                            <div class="project-detail">⏱️ 32 شهر</div>
+                            <div class="project-detail">📏 8 كم</div>
+                            <div class="project-detail">🌉 4 جسور</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="container">
+            <h2 class="section-title">أرقام وإنجازات</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">🏗️</div>
+                    <span class="stat-number">+350</span>
+                    <span class="stat-text">مشروع منفذ</span>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⏱️</div>
+                    <span class="stat-number">20+</span>
+                    <span class="stat-text">سنة خبرة</span>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <span class="stat-number">95%</span>
+                    <span class="stat-text">رضا العملاء</span>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📏</div>
+                    <span class="stat-number">2M+</span>
+                    <span class="stat-text">متر مربع منفذ</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="clients-section">
+        <div class="container">
+            <h2 class="section-title">عملاؤنا</h2>
+            <div class="clients-grid">
+                <div class="client-logo">
+                    <div style="color: #F4B100; font-weight: bold; font-size: 1.2rem;">وزارة الإسكان</div>
+                </div>
+                <div class="client-logo">
+                    <div style="color: #F4B100; font-weight: bold; font-size: 1.2rem;">أمانة الرياض</div>
+                </div>
+                <div class="client-logo">
+                    <div style="color: #F4B100; font-weight: bold; font-size: 1.2rem;">شركة أرامكو</div>
+                </div>
+                <div class="client-logo">
+                    <div style="color: #F4B100; font-weight: bold; font-size: 1.2rem;">الشركة السعودية للكهرباء</div>
+                </div>
+                <div class="client-logo">
+                    <div style="color: #F4B100; font-weight: bold; font-size: 1.2rem;">مؤسسة محمد بن عبدالعزيز الراجحي</div>
+                </div>
+                <div class="client-logo">
+                    <div style="color: #F4B100; font-weight: bold; font-size: 1.2rem;">شركة المراعي</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="section-title">آراء عملائنا</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"تعاملنا مع شركة أصالة الرياض في تنفيذ مشروعنا السكني وكانت النتيجة مبهرة. الالتزام بالمواعيد وجودة التنفيذ تجاوزت توقعاتنا."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">م</div>
+                        <div class="author-info">
+                            <h4>المهندس محمد الشمري</h4>
+                            <p>مدير مشاريع - شركة تطوير العقارات</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"من أفضل الشركات التي تعاملنا معها في مجال المقاولات. الفريق محترف والجودة عالية، وننصح بالتعامل معهم."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">ع</div>
+                        <div class="author-info">
+                            <h4>الدكتور عبدالله الفهد</h4>
+                            <p>رئيس مجلس إدارة - مجموعة الفهد</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"الالتزام بالجودة والمواعيد والشفافية في التعامل جعلنا نستمر في التعاون مع أصالة الرياض لأكثر من 5 مشاريع."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">ن</div>
+                        <div class="author-info">
+                            <h4>ناصر العتيبي</h4>
+                            <p>مدير التشغيل - شركة الاستثمار العقاري</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">لنجعل مشروعك حقيقة</h2>
+                <p class="cta-text">تواصل معنا اليوم لمناقشة مشروعك القادم، ولتكون جزءاً من قصص نجاحنا</p>
+                <button class="btn-primary">اطلب استشارة مجانية</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <h3>أصالة الرياض</h3>
+                        <span>للمقاولات العامة</span>
+                    </div>
+                    <p>الريادة في مجال المقاولات العامة منذ أكثر من 20 عاماً</p>
+                </div>
+                <div class="footer-contact">
+                    <h4>اتصل بنا</h4>
+                    <p>asala.ryadh@gmail.com</p>
+                    <p>asala@asala.nyadh@gmail.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 شركة أصالة الرياض للمقاولات العامة. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // فلترة المشاريع
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // إزالة النشاط من جميع الأزرار
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // إضافة النشاط للزر المختار
+                this.classList.add('active');
+                
+                const filter = this.getAttribute('data-filter');
+                const projects = document.querySelectorAll('.project-card');
+                
+                projects.forEach(project => {
+                    if (filter === 'all' || project.getAttribute('data-category') === filter) {
+                        project.style.display = 'block';
+                    } else {
+                        project.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // التنقل السلس
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // تأثيرات الظهور
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, observerOptions);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const elementsToAnimate = document.querySelectorAll('.project-card, .stat-card, .client-logo, .testimonial-card');
+            elementsToAnimate.forEach(el => {
+                observer.observe(el);
+            });
+        });
+
+        // تأثير التمرير على الهيدر
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(28, 28, 28, 0.98)';
+                header.style.boxShadow = '0 5px 20px rgba(244, 177, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(28, 28, 28, 0.95)';
+                header.style.boxShadow = '0 2px 20px rgba(244, 177, 0, 0.1)';
+            }
+        });
+
+        // تأثيرات الأزرار
+        document.querySelectorAll('.btn-primary').forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px)';
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>
